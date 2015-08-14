@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/faces":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/faces","hostpath":"/Users/banderson/Sites/biscuits/faces","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/banderson/Sites/biscuits/faces","disabled":false}}}
