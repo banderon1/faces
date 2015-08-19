@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFacebookColumnsToUsersTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -23,10 +23,19 @@ class AddFacebookColumnsToUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            //for cashier
+            $table->tinyInteger('stripe_active')->default(0);
+            $table->string('stripe_id')->nullable();
+            $table->string('stripe_subscription')->nullable();
+            $table->string('stripe_plan', 100)->nullable();
+            $table->string('last_four', 4)->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
+            $table->timestamp('subscription_ends_at')->nullable();
+            //end cashier
             //for facebook sdk
             $table->bigInteger('facebook_user_id')->unsigned()->index();
             $table->string('access_token')->nullable();
-            //end for facebook sdk
+            //end facebook sdk
             $table->rememberToken();
             $table->timestamps();
         });
