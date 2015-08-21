@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
+use App\AuthenticateUser;
+use App\AuthenticateUserListener;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Validator;
 
-class AuthController extends Controller
+class AuthController extends Controller implements AuthenticateUserListener
 {
     /*
     |--------------------------------------------------------------------------
@@ -61,5 +64,25 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+
+    /**
+     * @param $user
+     */
+    public function userHasLoggedIn($user)
+    {
+        return redirect(\Session::get('redirect_to', '/'));
+    }
+
+
+    /**
+     * @param AuthenticateUser $authenticateUser
+     * @param Request $request
+     * @return mixed
+     */
+    public function getFacebook(AuthenticateUser $authenticateUser, Request $request)
+    {
+        return $authenticateUser->execute('facebook', $request->has('code'), $this);
     }
 }

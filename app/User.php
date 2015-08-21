@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Contracts\Billable as BillableContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, BillableContract
 {
-    use Authenticatable, CanResetPassword, Billable;
+    use Authenticatable, CanResetPassword, SoftDeletes, Billable;
 
     /**
      * The database table used by the model.
@@ -26,14 +27,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'avatar'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'access_token'];
 
 
     /**
@@ -43,5 +44,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $dates = ['trial_ends_at', 'subscription_ends_at'];
+    protected $dates = ['deleted_at', 'trial_ends_at', 'subscription_ends_at'];
 }

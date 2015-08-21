@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('avatar', 255)->nullable();
             //for cashier
             $table->tinyInteger('stripe_active')->default(0);
             $table->string('stripe_id')->nullable();
@@ -37,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->string('access_token')->nullable();
             //end facebook sdk
             $table->rememberToken();
+            $table->timestamp('deleted_at');
             $table->timestamps();
         });
 

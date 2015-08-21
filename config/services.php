@@ -36,7 +36,9 @@ return [
     ],
 
     'facebook' => [
-        'app_id' => env('FACEBOOK_APP_ID'),
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => 'http://faces.app/auth/facebook',
     ],
 
     'twitter' => [
