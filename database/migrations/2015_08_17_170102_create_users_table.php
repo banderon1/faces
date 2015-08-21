@@ -38,7 +38,7 @@ class CreateUsersTable extends Migration
             $table->string('access_token')->nullable();
             //end facebook sdk
             $table->rememberToken();
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
 
