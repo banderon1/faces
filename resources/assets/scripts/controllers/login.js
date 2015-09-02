@@ -15,23 +15,22 @@ angular
 
         $scope.auth = {
             email:'foo@bar.com',
-            password:'test1234'
+            password:'test1234',
+            errorMsg:''
         };
 
         $scope.submit = function() {
 
-            $http.post('/auth/login', this.auth).
+            $http.post('/auth/login-ajax', this.auth).
                 then(function(response) {
-                    console.log(response.data);
-                    //if success
-                    //$location.path('/dashboard');
-                    //return false;
-                    //else
-                    //show errors
+
+                    //success
+                    $location.path('/dashboard');
+                    return false;
+
                 }, function(response) {
-                    console.error(response.data);
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
+                    //show errors
+                    $scope.auth.errorMsg = response.data.error;
                 });
             return false;
         }
