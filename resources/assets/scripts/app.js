@@ -38,10 +38,10 @@ angular
                 parent: 'dashboard',
                 templateUrl: 'views/dashboard/overview.html'
             })
-            .state('reports', {
-                url: '/reports',
+            .state('history', {
+                url: '/history',
                 parent: 'dashboard',
-                templateUrl: 'views/dashboard/reports.html'
+                templateUrl: 'views/dashboard/history.html'
             });
 
     });
