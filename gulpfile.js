@@ -22,6 +22,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('jscs', function() {
+  return true;
   return gulp.src('resources/assets/scripts/**/*.js')
     .pipe($.jscs());
 });
